@@ -21,6 +21,11 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter(trailing_slash=False)
 router.register("books", api_views.BookViewSet, basename="books")
+router.register(
+    "books/<int:book_pk>/book_records",
+    api_views.BookRecordViewSet,
+    basename="book_records",
+)
 
 urlpatterns = [
     path("api/", include(router.urls)),
