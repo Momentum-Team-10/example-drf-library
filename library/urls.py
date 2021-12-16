@@ -34,11 +34,6 @@ urlpatterns = [
         api_views.BookReviewListCreateView.as_view(),
         name="book_reviews",
     ),
-    path(
-        "api/books/<int:book_pk>/book_records/",
-        api_views.BookRecordCreateView.as_view(),
-        name="book_record_create",
-    ),
     path("auth/", include("djoser.urls.authtoken")),
     path("admin/", admin.site.urls),
 ]

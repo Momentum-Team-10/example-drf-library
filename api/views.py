@@ -1,6 +1,6 @@
 from django.contrib.postgres.search import SearchVector
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from rest_framework.decorators import action
+from rest_framework.decorators import action, permission_classes
 from rest_framework.exceptions import PermissionDenied, ParseError
 from rest_framework.generics import CreateAPIView, ListCreateAPIView, get_object_or_404
 from rest_framework.response import Response
@@ -55,10 +55,6 @@ class BookRecordViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(reader=self.request.user)
-
-
-class BookRecordCreateView(CreateAPIView):
-    pass
 
 
 class BookReviewListCreateView(ListCreateAPIView):
