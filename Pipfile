@@ -12,6 +12,7 @@ django-environ = "*"
 django-on-heroku = "*"
 djoser = "*"
 django-cors-headers = "*"
+drf-nested-routers = "*"
 
 [dev-packages]
 black = "*"

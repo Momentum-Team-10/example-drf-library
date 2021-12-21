@@ -18,17 +18,20 @@ from django.urls import path, include
 from django.conf import settings
 from api import views as api_views
 from rest_framework.routers import DefaultRouter
+from rest_framework_nested.routers import NestedSimpleRouter
 
 router = DefaultRouter(trailing_slash=False)
 router.register("books", api_views.BookViewSet, basename="books")
-router.register(
-    "books/<int:book_pk>/book_records",
+books_router = NestedSimpleRouter(router, "books", lookup="book")
+books_router.register(
+    "book_records",
     api_views.BookRecordViewSet,
     basename="book_records",
 )
 
 urlpatterns = [
     path("api/", include(router.urls)),
+    path("api/", include(books_router.urls)),
     path(
         "api/books/<int:book_pk>/reviews",
         api_views.BookReviewListCreateView.as_view(),

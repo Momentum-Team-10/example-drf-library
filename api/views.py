@@ -51,7 +51,9 @@ class BookRecordViewSet(ModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        return queryset.filter(reader=self.request.user)
+        return queryset.filter(reader=self.request.user).filter(
+            book=self.kwargs["book_pk"]
+        )
 
     def perform_create(self, serializer):
         serializer.save(reader=self.request.user)
